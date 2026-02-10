@@ -35,10 +35,15 @@ const WelcomeModal = ({ setRecruiterMode }) => {
       setRecruiterMode(true);
     }
 
+    console.log('Attempting to send email...');
+    console.log('Service ID:', SERVICE_ID);
+    console.log('Template ID:', TEMPLATE_ID);
+    console.log('Public Key:', PUBLIC_KEY ? 'Start with ' + PUBLIC_KEY.substring(0, 3) : 'MISSING');
+
     // Send Email
     try {
-      if (SERVICE_ID !== 'YOUR_SERVICE_ID') {
-        await emailjs.send(
+      if (SERVICE_ID && TEMPLATE_ID && PUBLIC_KEY) {
+        const response = await emailjs.send(
           SERVICE_ID,
           TEMPLATE_ID,
           {
@@ -48,12 +53,14 @@ const WelcomeModal = ({ setRecruiterMode }) => {
           },
           PUBLIC_KEY
         );
-        console.log('Email sent successfully');
+        console.log('Email sent successfully!', response.status, response.text);
       } else {
-        console.warn('EmailJS keys are missing. Email not sent.');
+        console.warn('EmailJS keys are missing/undefined. Email not sent.');
+        console.warn('Checks:', { SERVICE_ID, TEMPLATE_ID, PUBLIC_KEY });
       }
     } catch (error) {
       console.error('Failed to send email:', error);
+      if (error.text) console.error('Error details:', error.text);
     } finally {
       setSending(false);
       setTimeout(() => setIsOpen(false), 1500); // Close after brief delay
