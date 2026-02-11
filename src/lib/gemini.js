@@ -1,3 +1,4 @@
+import { GoogleGenerativeAI } from "@google/generative-ai";
 import { PROFILE, EXPERIENCE, PROJECTS, SKILLS, EDUCATION, CERTIFICATIONS } from '../data';
 
 const API_KEY = import.meta.env.VITE_GEMINI_API_KEY;
