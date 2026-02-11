@@ -14,11 +14,13 @@ const WelcomeModal = ({ setRecruiterMode }) => {
   const [sending, setSending] = useState(false);
 
   useEffect(() => {
-    // Check if user has already visited (using a new key to reset for everyone)
-    const hasVisited = localStorage.getItem('portfolio_visit_v1');
+    // Check if user has already visited (increased version to v2 to force show for testing)
+    const hasVisited = localStorage.getItem('portfolio_visit_v2');
+
     if (!hasVisited) {
-      // Small delay for better UX
-      const timer = setTimeout(() => setIsOpen(true), 1500);
+      const timer = setTimeout(() => {
+        setIsOpen(true);
+      }, 1500);
       return () => clearTimeout(timer);
     }
   }, []);
@@ -28,17 +30,12 @@ const WelcomeModal = ({ setRecruiterMode }) => {
     setSending(true);
 
     // Save to local storage so modal doesn't show again
-    localStorage.setItem('portfolio_visit_v1', 'true');
+    localStorage.setItem('portfolio_visit_v2', 'true');
 
     // If recruiter, enable recruiter mode immediately
     if (role === 'Recruiter') {
       setRecruiterMode(true);
     }
-
-    console.log('Attempting to send email...');
-    console.log('Service ID:', SERVICE_ID);
-    console.log('Template ID:', TEMPLATE_ID);
-    console.log('Public Key:', PUBLIC_KEY ? 'Start with ' + PUBLIC_KEY.substring(0, 3) : 'MISSING');
 
     // Send Email
     try {
@@ -53,10 +50,6 @@ const WelcomeModal = ({ setRecruiterMode }) => {
           },
           PUBLIC_KEY
         );
-        console.log('Email sent successfully!', response.status, response.text);
-      } else {
-        console.warn('EmailJS keys are missing/undefined. Email not sent.');
-        console.warn('Checks:', { SERVICE_ID, TEMPLATE_ID, PUBLIC_KEY });
       }
     } catch (error) {
       console.error('Failed to send email:', error);
@@ -148,7 +141,7 @@ const WelcomeModal = ({ setRecruiterMode }) => {
             {!selectedRole && (
               <button
                 onClick={() => {
-                  localStorage.setItem('portfolio_visit_v1', 'true');
+                  localStorage.setItem('portfolio_visit_v2', 'true');
                   setIsOpen(false);
                 }}
                 className="absolute top-4 right-4 text-text-secondary hover:text-white transition-colors"

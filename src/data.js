@@ -4,13 +4,13 @@ export const PROFILE = {
   headline: "Engineering the digital nervous systems of tomorrow.",
   intro: [
     "I analyze the chaos of raw data and architect it into clarity. I don't just write code; I build the living, breathing infrastructures that power intelligent decisions.",
-    "From optimizing high-frequency API pipelines to deploying large-scale RAG models, my work is defined by precision, scalability, and an obsession with the 'Why'.",
-    "I operate where software meets cognition—creating systems that don't just function, but think."
+    "From optimizing high frequency API pipelines to deploying large-scale RAG models, my work is defined by precision, scalability, and an obsession with the 'Why'.",
+    "I operate where software meets cognition creating systems that don't just function, but think."
   ],
   socials: {
     email: "ramansharma6201@gmail.com",
     phone: "+91-8448582306",
-    linkedin: "https://linkedin.com",
+    linkedin: "https://www.linkedin.com/in/raman-sharma-71371024a/",
     github: "https://github.com/GLITCHINvision",
     leetcode: "https://leetcode.com/u/hard_code7/",
     codeforces: "https://codeforces.com/profile/_coder_hub7"
@@ -39,10 +39,10 @@ export const EXPERIENCE = [
     date: "Aug 2025 – Oct 2025",
     desc: "Architected enterprise AI solutions and high-performance microservices.",
     details: [
-      "Developed an enterprise-grade AI chatbot using Azure Cognitive Services and Bot Framework, handling complex user intents.",
+      "Developed an enterprise grade AI chatbot using Azure Cognitive Services and Bot Framework, handling complex user intents.",
       "Designed and implemented modular microservices using Node.js and Azure Functions, improving system scalability by 35%.",
       "Optimized NLP model integration which resulted in a 25% reduction in API response latency.",
-      "Managed data persistence layers using Azure Blob Storage and Cosmos DB for high-availability requirements."
+      "Managed data persistence layers using Azure Blob Storage and Cosmos DB for high availability requirements."
     ]
   },
   {
@@ -51,8 +51,8 @@ export const EXPERIENCE = [
     date: "Dec 2024 – Oct 2025",
     desc: "Led technical development for a secure, high-traffic e-commerce ecosystem.",
     details: [
-      "Built a full-stack e-commerce platform using the MERN stack, supporting secure JWT authentication and RBAC.",
-      "Engineered automated payment processing pipelines and real-time order tracking systems, reducing manual overhead by 60%.",
+      "Built a full stack e-commerce platform using the MERN stack, supporting secure JWT authentication and RBAC.",
+      "Engineered automated payment processing pipelines and real time order tracking systems, reducing manual overhead by 60%.",
       "Optimized database queries and API response times by 40% through strategic indexing and caching.",
       "Spearheaded UI/UX redesigns and integrated advanced analytics, leading to a significant increase in user retention."
     ]
@@ -61,7 +61,7 @@ export const EXPERIENCE = [
     role: "Data Analyst Intern",
     company: "NayePankh Foundation",
     date: "Nov 2024 – Dec 2024",
-    desc: "Leveraged data-driven insights to optimize fundraising and engagement strategies.",
+    desc: "Leveraged data driven insights to optimize fundraising and engagement strategies.",
     details: [
       "Processed and analyzed multi-year donor datasets using Python (Pandas/NumPy) to reveal hidden engagement patterns.",
       "Designed automated reporting dashboards that provided actionable insights for strategic fundraising decisions.",
@@ -74,22 +74,22 @@ export const PROJECTS = [
   {
     title: "YeloSoul E-commerce Platform",
     tech: "MERN Stack · Vercel · Render",
-    desc: "Developed a secure and responsive e-commerce web app with role-based access, REST APIs, and product dashboards.",
+    desc: "Developed a secure and responsive e-commerce web app with role based access, REST APIs, and product dashboards.",
     link: "https://github.com/GLITCHINvision/yelosoul",
     details: [
-      "Developed a secure and responsive e-commerce web app with role-based access, REST APIs, and product dashboards.",
+      "Developed a secure and responsive e-commerce web app with role based access, REST APIs, and product dashboards.",
       "Integrated Google OAuth and real-time order updates using WebSockets and MongoDB Atlas."
     ]
   },
   {
     title: "Fact-Checker RAG Chatbot",
     tech: "React · Flask · Hugging Face · NewsAPI",
-    desc: "Built an AI chatbot for real-time fact verification using Retrieval-Augmented Generation, improving factual accuracy by 30%.",
+    desc: "Built an AI chatbot for real time fact verification using Retrieval Augmented Generation, improving factual accuracy by 30%.",
     link: "https://factcheck-frontend.vercel.app/",
     details: [
-      "Built an AI chatbot for real-time fact verification using Retrieval-Augmented Generation.",
+      "Built an AI chatbot for real-time fact verification using Retrieval Augmented Generation.",
       "Improved factual accuracy by 30% through contextual document retrieval.",
-      "Added voice input, dark/light modes, and verified-only response toggle."
+      "Added voice input, dark/light modes, and verified only response toggle."
     ]
   },
   {
@@ -99,14 +99,14 @@ export const PROJECTS = [
     link: "https://campusbot-frontend.onrender.com/",
     details: [
       "Developed a chatbot answering placement queries using structured datasets and filters.",
-      "Deployed a full-stack application supporting 24/7 access."
+      "Deployed a full stack application supporting 24/7 access."
     ]
   },
   {
     title: "Data Mesh Analytics Pipeline",
     tech: "Python · PostgreSQL · dbt · Airflow · Docker",
     desc: "Implemented a domain-driven analytics architecture enabling decentralized data ownership and improved analytics turnaround.",
-    link: "https://github.com/GLITCHINvision/data_mesh_project",
+    link: "https://github.com/GLITCHINvision/data_mesh_project-",
     details: [
       "Implemented a domain-driven analytics architecture enabling decentralized data ownership.",
       "Improved scalability and analytics turnaround time."
