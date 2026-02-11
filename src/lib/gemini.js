@@ -4,7 +4,7 @@ const API_KEY = import.meta.env.VITE_GEMINI_API_KEY;
 const genAI = new GoogleGenerativeAI(API_KEY);
 
 const model = genAI.getGenerativeModel({
-  model: "gemini-1.5-flash",
+  model: "gemini-2.0-flash",
   systemInstruction: `You are Ramanobot, the AI assistant for Raman Sharma's portfolio. 
 Your goal is to provide genuine, accurate, and helpful information about Raman.
 
