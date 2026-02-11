@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { MessageSquare, X, Send, Sparkles, MessageCircle } from 'lucide-react';
 import { RAMANOBOT_DATA, SMALL_TALK, CONVERSATION_STARTERS, INITIAL_GREETING, FALLBACK_RESPONSE } from '../chatbotData';
+import { getGeminiResponse } from '../lib/gemini';
 
 const ChatBot = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -10,6 +11,7 @@ const ChatBot = () => {
   ]);
   const [input, setInput] = useState('');
   const [isTyping, setIsTyping] = useState(false);
+  const [chatHistory, setChatHistory] = useState([]); // For Gemini context
   const messagesEndRef = useRef(null);
 
   const scrollToBottom = () => {
@@ -20,7 +22,8 @@ const ChatBot = () => {
     scrollToBottom();
   }, [messages, isTyping]);
 
-  const findBestMatch = (query) => {
+  // LOCAL FALLBACK LOGIC
+  const findLocalMatch = (query) => {
     const q = query.toLowerCase();
 
     // Stop words to filter out for better matching
@@ -75,7 +78,7 @@ const ChatBot = () => {
     return FALLBACK_RESPONSE;
   };
 
-  const handleSend = (text = input) => {
+  const handleSend = async (text = input) => {
     if (!text.trim()) return;
 
     const userMessage = { role: 'user', text, id: Date.now() };
@@ -83,13 +86,32 @@ const ChatBot = () => {
     setInput('');
     setIsTyping(true);
 
-    // Dynamic delay based on response length for "human" feel
-    setTimeout(() => {
-      const response = findBestMatch(text);
+    try {
+      // 1. Try Gemini API (RAG)
+      const formattedHistory = chatHistory.map(h => ({
+        role: h.role === 'bot' ? 'model' : 'user',
+        parts: [{ text: h.text }],
+      }));
+
+      const response = await getGeminiResponse(text, formattedHistory);
+
       const botMessage = { role: 'bot', text: response, id: Date.now() + 1 };
       setMessages(prev => [...prev, botMessage]);
-      setIsTyping(false);
-    }, 600 + Math.min(text.length * 10, 1500));
+      setChatHistory(prev => [...prev, userMessage, botMessage]);
+    } catch (error) {
+      console.warn("ChatBot: Gemini failed or key missing. Using local vibes. 📉");
+
+      // 2. Fallback to Local Matching
+      setTimeout(() => {
+        const response = findLocalMatch(text);
+        const botMessage = { role: 'bot', text: response, id: Date.now() + 1 };
+        setMessages(prev => [...prev, botMessage]);
+        setIsTyping(false);
+      }, 600 + Math.min(text.length * 10, 1500));
+      return; // Handled by setTimeout
+    }
+
+    setIsTyping(false);
   };
 
   const quickQuestions = [
