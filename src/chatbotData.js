@@ -1,103 +1,136 @@
 export const RAMANOBOT_DATA = [
   {
-    keywords: ["who", "are", "you", "identity", "name"],
+    keywords: ["who", "are", "you", "identity", "name", "raman"],
     question: "Who are you?",
-    answer: "I'm Raman Sharma. 🎓 Final year Electrical Engineering student at DTU by day, code architect by night. I turn caffeine into data systems and ML models. Let's build something legendary! 🚀"
+    answers: [
+      "I'm Raman Sharma. 🎓 Final year Electrical Engineering student at DTU by day, code architect by night. Let's build something legendary! 🚀",
+      "I'm the human behind the code! Raman Sharma, DTU senior, and a builder of digital systems. Nice to meet ya! ✨",
+      "Raman Sharma here. I turn complex data into clear solutions. Currently finishing up my B.Tech at DTU. 🧠⚡"
+    ]
   },
   {
-    keywords: ["tell", "about", "yourself", "bio", "intro"],
+    keywords: ["tell", "about", "yourself", "bio", "intro", "background"],
     question: "Tell me about yourself",
-    answer: "I'm a developer obsessed with precision and scalability. From neural networks to full-stack ecosystems, I build the living, breathing infrastructures that power intelligent decisions. No cap, just high-performance code. 💻🔥"
+    answers: [
+      "I'm a developer obsessed with precision and scalability. From neural networks to full-stack ecosystems, I build high-performance code. 💻🔥",
+      "Just a dev who loves building cool stuff that works at scale. I'm deep into AI, Data Analyics, and Web Dev. No cap, just vibes and code. 🧪",
+      "I'm all about that engineering life. I deconstruct systems and rebuild them better. DTU educated, software motivated. �"
+    ]
   },
   {
-    keywords: ["skills", "tech", "languages", "stack", "knowledge"],
+    keywords: ["skills", "tech", "languages", "stack", "knowledge", "know", "code"],
     question: "What are your technical skills?",
-    answer: "I speak Python, SQL, and C++ fluently. React is my playground for the frontend, and I'm deep into Flask, ML, and AI infra. I basically build the digital nervous systems of tomorrow. 🧠⚡"
+    answers: [
+      "I speak Python, SQL, and C++ fluently. React is my playground for the frontend, and I'm deep into Flask, ML, and AI infra. 🧠⚡",
+      "My tech stack is pretty lit: Python, SQL, C++, React.js, and a whole lot of AI/ML tools like PyTorch and Hugging Face. 🛠️",
+      "I'm a polyglot in the dev world. Python for logic, SQL for data, and React for the beauty. It's the ultimate setup. 🚀"
+    ]
   },
   {
-    keywords: ["sql", "database", "postgres", "mysql", "queries"],
+    keywords: ["sql", "database", "postgres", "mysql", "queries", "data"],
     question: "Do you know SQL?",
-    answer: "Bet! 📊 I'm a SQL wizard—joins, window functions, query optimization, you name it. I don't just fetch data; I make it talk. Performance is always the vibe."
+    answers: [
+      "Bet! 📊 I'm a SQL wizard—joins, window functions, query optimization, you name it. Performance is always the vibe.",
+      "SQL is my second language. I love architecting schemas and writing queries that actually make sense of raw data. 📉",
+      "For real. I've used SQL in almost all my projects, from predictive analytics to full-stack apps. Databases are my jam. 🥯"
+    ]
   },
   {
-    keywords: ["ml", "machine", "learning", "ai", "transformer", "hugging"],
+    keywords: ["ml", "machine", "learning", "ai", "transformer", "hugging", "model"],
     question: "Do you work with Machine Learning?",
-    answer: "For real. 🤖 I've built everything from RAG-based chatbots to custom predictive models using scikit-learn and Hugging Face. I operate where software meets cognition."
+    answers: [
+      "For real. 🤖 I've built everything from RAG-based chatbots to custom predictive models using scikit-learn and Hugging Face.",
+      "ML is a huge part of what I do. I operate where software meets cognition, creating systems that don't just function, but think. 🧠💡",
+      "Yup! I've integrated transformer models and built custom analytics pipelines. The future is AI, and I'm here for it. ✨"
+    ]
   },
   {
-    keywords: ["frontend", "react", "html", "css", "js", "responsive"],
+    keywords: ["frontend", "react", "html", "css", "js", "responsive", "design", "ui", "ux"],
     question: "Do you have frontend experience?",
-    answer: "Yup! I use React to build interfaces that aren't just functional but feel premium and smooth. Check the UI you're looking at right now—total vibes. ✨"
+    answers: [
+      "Yup! I use React to build interfaces that aren't just functional but feel premium and smooth. Check the UI you're looking at right now! ✨",
+      "I'm a fan of clean, dynamic UI. React and Tailwind are my go-tos for building responsive web apps that pop. 🎨",
+      "Frontend is where the magic becomes visible. I focus on high-fidelity designs and smooth user experiences. No mid UIs allowed. 🚫"
+    ]
   },
   {
-    keywords: ["placement", "campus", "bot", "queries"],
+    keywords: ["placement", "campus", "bot", "queries", "college"],
     question: "Tell me about your placement chatbot project",
-    answer: "It's a 24/7 AI-powered placement wingman. 🎓 Answers queries about companies, eligibility, and trends using a Flask/React stack. Scalable and always clutch for students. 🚀"
+    answers: [
+      "It's a 24/7 AI-powered placement wingman. 🎓 Answers queries about companies and trends using a Flask/React stack. Scalable and clutch. 🚀",
+      "Built that to help my peers navigate the placement chaos. It uses structured data and NLP to give real-time answers. Total life saver. 💎",
+      "The Campus Bot is one of my faves. It's a full-stack solution that makes placement info accessible 24/7. Built with React and Flask. �"
+    ]
   },
   {
-    keywords: ["fact", "check", "verification", "hallucination", "rag"],
+    keywords: ["fact", "check", "verification", "hallucination", "rag", "accurate"],
     question: "What is your fact checker project?",
-    answer: "Think of it as a BS-detector for AI. 🔍 Uses RAG to verify info in real-time, letting users toggle between LLM-generated and verified-only responses. Pure accuracy, no cap."
+    answers: [
+      "Think of it as a BS-detector for AI. 🔍 Uses RAG to verify info in real-time. Pure accuracy, no cap.",
+      "I built it to stop AI from hallucinating. It cross-references facts using APIs and RAG. Keeping the truth alive in the LLM era. ⚖️",
+      "It's an AI chatbot for real-time verification. It improves factual accuracy by 30%—huge for reliable info. 📈"
+    ]
   },
   {
-    keywords: ["budget", "buddy", "finance", "expense", "spending"],
+    keywords: ["budget", "buddy", "finance", "expense", "spending", "money"],
     question: "What is Smart Budget Buddy?",
-    answer: "Your financial glow-up. 💸 An ML-based app that categorizes your spending and predicts future patterns. It's like having a CFO in your pocket."
+    answers: [
+      "Your financial glow-up. 💸 An ML-based app that categorizes your spending and predicts future patterns. Pure finance energy.",
+      "It's an ML-powered finance app. Categorizes expenses and gives you saving tips so you can stop being broke (kidding, but it helps!). 💰✨",
+      "Smart Budget Buddy uses ML to track and predict spending. It's like having a personal accountant who actually knows math. 📉"
+    ]
   },
   {
-    keywords: ["challenges", "difficulty", "problems", "solved"],
+    keywords: ["challenges", "difficulty", "problems", "solved", "hard"],
     question: "What challenges have you faced?",
-    answer: "API latency, AI hallucinations, and scaling databases kept me on my toes. But honestly? Solving those 'impossible' bugs is where the real growth is. We stay cooked. 🍳"
+    answers: [
+      "API latency, AI hallucinations, and scaling databases kept me on my toes. Solving those 'impossible' bugs is where the real growth is. 🍳",
+      "The hardest part is often making complex systems simple. Balancing performance with user experience is a constant (and fun) challenge. ⚖️",
+      "Debugging high-frequency pipelines and ensuring data integrity at scale. It's tough, but that's how we level up. 🔥"
+    ]
   },
   {
-    keywords: ["hire", "why", "value", "impact"],
+    keywords: ["hire", "why", "value", "impact", "candidate"],
     question: "Why should we hire you?",
-    answer: "I don't just write code; I architect solutions. I learn fast, move faster, and I'm obsessed with delivering measurable impact. I'm the clutch player you need in your dev team. 💎"
+    answers: [
+      "I don't just write code; I architect solutions. I learn fast, move faster, and I'm obsessed with delivering measurable impact. 💎",
+      "I'm a clutch player. Whether it's optimization or building from scratch, I bring a mix of engineering rigor and creative thinking. 🚀",
+      "I'm ready to hit the ground running. I bridge the gap between data science and software engineering. Let's make moves. 📈"
+    ]
   },
   {
-    keywords: ["relocate", "location", "move", "office"],
-    question: "Are you open to relocation?",
-    answer: "100%. 🌍 Willing to move for the right opportunity or keep it elite in a remote setup. I'm ready to vibe wherever the growth is."
-  },
-  {
-    keywords: ["internship", "job", "opportunity", "hiring"],
-    question: "Are you available for internship?",
-    answer: "Manifesting! ✨ Yes, I'm actively looking for roles in Data Analytics, ML, or Full Stack. Let's connect and build the future!"
-  },
-  {
-    keywords: ["goal", "career", "future", "vision"],
-    question: "What is your career goal?",
-    answer: "Building AI systems that actually matter. I want to work on products that solve real-world chaos at scale. Big vision, bigger code. 🎯"
-  },
-  {
-    keywords: ["contact", "reach", "email", "linkedin", "connect"],
+    keywords: ["contact", "reach", "email", "linkedin", "connect", "message", "talk"],
     question: "How can I contact you?",
-    answer: "Slide into my LinkedIn or check the Contact section here. My GitHub is also open for exploration—let's keep the convo going! 📧"
+    answers: [
+      "Slide into my LinkedIn or check the Contact section here. My GitHub is also open for exploration! 📧",
+      "You can reach me via the form on this page or LinkedIn. I'm usually pretty quick to respond if the vibes are right. 🔗",
+      "Email or LinkedIn works best. Let's chat about tech, projects, or just vibing over code! ✨"
+    ]
+  }
+];
+
+export const CONVERSATION_STARTERS = [
+  "Actually, that's a great question! ",
+  "Oh, I gotchu! ",
+  "Facts. ",
+  "Here's the tea: ",
+  "Check this out: ",
+  "Real talk, ",
+  "Wait, let me tell you about that. "
+];
+
+export const SMALL_TALK = [
+  {
+    keywords: ["hi", "hello", "hey", "yo", "sup"],
+    answers: ["Yo! I'm Ramanobot. Ready to talk all things Raman? 🤖", "Hey! What's the move? Ask me anything about Raman's work! ✨"]
   },
   {
-    keywords: ["github", "code", "repo", "source"],
-    question: "Do you have GitHub?",
-    answer: "Oh, it's lit. 🐙 Everything from full-stack ecosystems to ML experiments is live at GLITCHINvision. Documentation is top-tier, obviously."
+    keywords: ["how", "are", "you", "doing", "good", "well"],
+    answers: ["I'm vibes! Just chilling in the code. How can I help? 😎", "Doing great, just calculating some stuff. What's on your mind? 🧠"]
   },
   {
-    keywords: ["tech", "preference", "favorites", "stack"],
-    question: "What technologies do you prefer?",
-    answer: "The Holy Trinity: Python for the heavy lifting, SQL for the truth, and React for the beauty. It's the ultimate power setup. ⚡"
-  },
-  {
-    keywords: ["advanced", "project", "hardest", "transformer"],
-    question: "Explain one advanced project you built",
-    answer: "Integrated a transformer LM into a high-performance Flask backend with RAG. Implementing hallucination filters was the real game-changer. It's not just a bot; it's a verified brain. 🧠💡"
-  },
-  {
-    keywords: ["resume", "cv", "experience"],
-    question: "Can I see your resume?",
-    answer: "For sure! You can view it right here in the Resume section. It's packed with all the details on my internships and skills. 📄"
-  },
-  {
-    keywords: ["education", "dtu", "college"],
-    question: "Where do you study?",
-    answer: "DTU (Delhi Technological University). Representing the Electrical Engineering gang, but my heart is in the bits and bytes. 🎓⚡"
+    keywords: ["thanks", "thank", "cool", "nice", "awesome"],
+    answers: ["Anytime! 🚀", "Glad I could help. You're the real one. 💎", "No problem at all! ✨"]
   }
 ];
 

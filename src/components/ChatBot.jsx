@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { MessageSquare, X, Send, Sparkles, MessageCircle } from 'lucide-react';
-import { RAMANOBOT_DATA, INITIAL_GREETING, FALLBACK_RESPONSE } from '../chatbotData';
+import { RAMANOBOT_DATA, SMALL_TALK, CONVERSATION_STARTERS, INITIAL_GREETING, FALLBACK_RESPONSE } from '../chatbotData';
 
 const ChatBot = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -22,22 +22,57 @@ const ChatBot = () => {
 
   const findBestMatch = (query) => {
     const q = query.toLowerCase();
-    let bestMatch = null;
-    let maxMatches = 0;
 
+    // Stop words to filter out for better matching
+    const stopWords = ['is', 'the', 'a', 'an', 'can', 'you', 'tell', 'me', 'what', 'do', 'have', 'your', 'my', 'any', 'about'];
+    const tokens = q.split(/\W+/).filter(t => t.length > 1 && !stopWords.includes(t));
+
+    if (tokens.length === 0 && q.length > 0) tokens.push(q); // Fallback to raw query if all are stop words
+
+    let bestMatch = null;
+    let maxScore = 0;
+
+    // Check Small Talk first
+    for (const item of SMALL_TALK) {
+      let score = 0;
+      item.keywords.forEach(kw => {
+        if (q.includes(kw)) score++;
+      });
+      if (score > maxScore) {
+        maxScore = score;
+        const randomIdx = Math.floor(Math.random() * item.answers.length);
+        bestMatch = item.answers[randomIdx];
+      }
+    }
+
+    if (maxScore > 0) return bestMatch;
+
+    // Check Main Data
     RAMANOBOT_DATA.forEach(item => {
-      let currentMatches = 0;
-      item.keywords.forEach(keyword => {
-        if (q.includes(keyword)) currentMatches++;
+      let score = 0;
+      tokens.forEach(token => {
+        if (item.keywords.includes(token)) score += 2; // Keyword match
+        else if (item.keywords.some(kw => kw.includes(token))) score += 1; // Partial match
       });
 
-      if (currentMatches > maxMatches) {
-        maxMatches = currentMatches;
-        bestMatch = item;
+      if (score > maxScore) {
+        maxScore = score;
+        const randomIdx = Math.floor(Math.random() * item.answers.length);
+        bestMatch = item.answers[randomIdx];
       }
     });
 
-    return maxMatches > 0 ? bestMatch.answer : FALLBACK_RESPONSE;
+    if (maxScore > 1) {
+      // Add a random conversational starter 30% of the time for "human" feel
+      const shouldAddStarter = Math.random() > 0.7;
+      if (shouldAddStarter) {
+        const starter = CONVERSATION_STARTERS[Math.floor(Math.random() * CONVERSATION_STARTERS.length)];
+        return starter + bestMatch;
+      }
+      return bestMatch;
+    }
+
+    return FALLBACK_RESPONSE;
   };
 
   const handleSend = (text = input) => {
@@ -48,13 +83,13 @@ const ChatBot = () => {
     setInput('');
     setIsTyping(true);
 
-    // Simulate thinking delay
+    // Dynamic delay based on response length for "human" feel
     setTimeout(() => {
       const response = findBestMatch(text);
       const botMessage = { role: 'bot', text: response, id: Date.now() + 1 };
       setMessages(prev => [...prev, botMessage]);
       setIsTyping(false);
-    }, 800 + Math.random() * 1000);
+    }, 600 + Math.min(text.length * 10, 1500));
   };
 
   const quickQuestions = [
@@ -141,8 +176,8 @@ const ChatBot = () => {
                 >
                   <div
                     className={`max-w-[80%] p-3 rounded-2xl text-sm ${msg.role === 'user'
-                        ? 'bg-accent-blue text-white rounded-tr-none'
-                        : 'bg-white/10 text-gray-200 border border-glass-border rounded-tl-none'
+                      ? 'bg-accent-blue text-white rounded-tr-none'
+                      : 'bg-white/10 text-gray-200 border border-glass-border rounded-tl-none'
                       }`}
                   >
                     {msg.text}
