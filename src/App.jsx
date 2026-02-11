@@ -10,6 +10,7 @@ import Resume from './components/Resume';
 import Footer from './components/Footer';
 import StarBackground from './components/StarBackground';
 import WelcomeModal from './components/WelcomeModal';
+import ChatBot from './components/ChatBot';
 
 // Main App Component
 function App() {
@@ -48,6 +49,7 @@ function App() {
           <Route path="/resume" element={<Resume recruiterMode={recruiterMode} />} />
         </Routes>
         <Footer recruiterMode={recruiterMode} />
+        <ChatBot />
       </div>
     </Router>
   );
