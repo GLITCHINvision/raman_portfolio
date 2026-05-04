@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { X, Briefcase, Code, User, Send } from 'lucide-react';
+import { X, Briefcase, Code, User, Send, ShieldCheck, Zap, Activity } from 'lucide-react';
 import emailjs from '@emailjs/browser';
 
-// EmailJS keys from environment variables
 const SERVICE_ID = import.meta.env.VITE_SERVICE_ID;
 const TEMPLATE_ID = import.meta.env.VITE_TEMPLATE_ID;
 const PUBLIC_KEY = import.meta.env.VITE_PUBLIC_KEY;
@@ -14,13 +13,11 @@ const WelcomeModal = ({ setRecruiterMode }) => {
   const [sending, setSending] = useState(false);
 
   useEffect(() => {
-    // Check if user has already visited (increased version to v2 to force show for testing)
-    const hasVisited = localStorage.getItem('portfolio_visit_v2');
-
+    const hasVisited = localStorage.getItem('portfolio_visit_v3');
     if (!hasVisited) {
       const timer = setTimeout(() => {
         setIsOpen(true);
-      }, 1500);
+      }, 1000);
       return () => clearTimeout(timer);
     }
   }, []);
@@ -28,19 +25,15 @@ const WelcomeModal = ({ setRecruiterMode }) => {
   const handleRoleSelect = async (role) => {
     setSelectedRole(role);
     setSending(true);
+    localStorage.setItem('portfolio_visit_v3', 'true');
 
-    // Save to local storage so modal doesn't show again
-    localStorage.setItem('portfolio_visit_v2', 'true');
-
-    // If recruiter, enable recruiter mode immediately
     if (role === 'Recruiter') {
       setRecruiterMode(true);
     }
 
-    // Send Email
     try {
       if (SERVICE_ID && TEMPLATE_ID && PUBLIC_KEY) {
-        const response = await emailjs.send(
+        await emailjs.send(
           SERVICE_ID,
           TEMPLATE_ID,
           {
@@ -53,103 +46,101 @@ const WelcomeModal = ({ setRecruiterMode }) => {
       }
     } catch (error) {
       console.error('Failed to send email:', error);
-      if (error.text) console.error('Error details:', error.text);
     } finally {
       setSending(false);
-      setTimeout(() => setIsOpen(false), 1500); // Close after brief delay
+      setTimeout(() => setIsOpen(false), 2000);
     }
   };
 
-  const backdrop = {
-    hidden: { opacity: 0 },
-    visible: { opacity: 1 }
-  };
-
-  const modal = {
-    hidden: { scale: 0.8, opacity: 0, y: 20 },
-    visible: { scale: 1, opacity: 1, y: 0, transition: { type: 'spring', damping: 25, stiffness: 500 } },
-    exit: { scale: 0.9, opacity: 0, y: 20 }
-  };
-
   const options = [
-    { label: 'Recruiter', icon: Briefcase, color: 'text-accent-blue', borderColor: 'hover:border-accent-blue' },
-    { label: 'Tech Enthusiast', icon: Code, color: 'text-emerald-400', borderColor: 'hover:border-emerald-400' },
-    { label: 'Job Hunter', icon: User, color: 'text-purple-400', borderColor: 'hover:border-purple-400' },
+    { label: 'Recruiter', icon: Briefcase, color: 'text-accent-primary', sub: 'Enable Executive Summary' },
+    { label: 'Engineer', icon: Code, color: 'text-accent-secondary', sub: 'View Architecture Docs' },
+    { label: 'Guest', icon: User, color: 'text-secondary', sub: 'General Exploration' },
   ];
 
   return (
     <AnimatePresence>
       {isOpen && (
         <motion.div
-          className="fixed inset-0 z-[2000] flex items-center justify-center px-4 bg-black/60 backdrop-blur-sm"
-          variants={backdrop}
-          initial="hidden"
-          animate="visible"
-          exit="hidden"
+          className="fixed inset-0 z-[2000] flex items-center justify-center px-4 bg-[#08090A]/80 backdrop-blur-md"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
         >
           <motion.div
-            className="w-full max-w-md bg-[#0F1115] border border-glass-border rounded-2xl p-8 shadow-2xl relative overflow-hidden"
-            variants={modal}
+            className="smart-card w-full max-w-md bg-[#0A0B0D]/90 border-accent-primary/20 p-8 shadow-2xl relative overflow-hidden"
+            initial={{ scale: 0.9, opacity: 0, y: 20 }}
+            animate={{ scale: 1, opacity: 1, y: 0 }}
+            exit={{ scale: 0.9, opacity: 0, y: 20 }}
           >
-            {/* Background Glow */}
-            <div className="absolute top-0 left-1/2 -translate-x-1/2 w-32 h-32 bg-accent-blue/20 blur-[80px] rounded-full pointer-events-none"></div>
+            {/* Background Accent */}
+            <div className="absolute top-0 right-0 w-32 h-32 bg-accent-primary/5 blur-[60px] rounded-full pointer-events-none"></div>
 
-            <div className="relative z-10 text-center">
+            <div className="relative z-10">
               {!selectedRole ? (
                 <>
-                  <h2 className="text-2xl font-bold text-white mb-2 font-mono">Who is visiting?</h2>
-                  <p className="text-text-secondary text-sm mb-8">Help me personalize your experience.</p>
+                  <div className="flex items-center gap-3 mb-6">
+                    <div className="p-2.5 rounded-lg bg-accent-primary/10 text-accent-primary">
+                      <ShieldCheck size={20} />
+                    </div>
+                    <div>
+                      <h2 className="text-xl font-bold text-white tracking-tight font-mono">VISITOR_AUTH</h2>
+                      <p className="text-[10px] text-secondary uppercase tracking-widest font-mono">Personalization Protocol</p>
+                    </div>
+                  </div>
 
                   <div className="grid gap-4">
                     {options.map((opt) => (
                       <button
                         key={opt.label}
                         onClick={() => handleRoleSelect(opt.label)}
-                        className={`group flex items-center gap-4 p-4 rounded-xl border border-glass-border bg-white/5 transition-all hover:bg-white/10 ${opt.borderColor} text-left`}
+                        className="group flex items-center gap-4 p-4 rounded-xl border border-white/5 bg-white/[0.02] hover:bg-white/5 hover:border-accent-primary/30 transition-all text-left relative overflow-hidden"
                       >
-                        <div className={`p-3 rounded-lg bg-black/40 ${opt.color}`}>
-                          <opt.icon size={24} />
+                        <div className={`p-3 rounded-lg bg-black/40 ${opt.color} group-hover:scale-110 transition-transform`}>
+                          <opt.icon size={20} />
                         </div>
                         <div>
-                          <span className={`block font-bold text-base text-gray-200 group-hover:text-white transition-colors`}>{opt.label}</span>
-                          <span className="text-xs text-text-secondary">
-                            {opt.label === 'Recruiter' ? 'Enables Recruiter Mode' : 'Explore the portfolio'}
-                          </span>
+                          <span className="block font-bold text-sm text-white">{opt.label}</span>
+                          <span className="text-[10px] font-mono text-secondary uppercase tracking-tighter">{opt.sub}</span>
+                        </div>
+                        <div className="ml-auto opacity-0 group-hover:opacity-100 transition-opacity">
+                          <Zap size={14} className="text-accent-primary" />
                         </div>
                       </button>
                     ))}
                   </div>
                 </>
               ) : (
-                <div className="py-8 flex flex-col items-center">
-                  <motion.div
-                    initial={{ scale: 0 }}
-                    animate={{ scale: 1 }}
-                    className="w-16 h-16 bg-accent-blue/10 rounded-full flex items-center justify-center mb-4 text-accent-blue"
-                  >
-                    <Send size={32} />
-                  </motion.div>
-                  <h3 className="text-xl font-bold text-white mb-2">Welcome!</h3>
-                  <p className="text-text-secondary">
-                    {selectedRole === 'Recruiter' ? 'Switching to Recruiter Mode...' : 'Enjoy exploring the portfolio!'}
+                <div className="py-12 flex flex-col items-center text-center">
+                  <div className="relative mb-8">
+                    <motion.div
+                      animate={{ rotate: 360 }}
+                      transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
+                      className="w-20 h-20 rounded-full border-2 border-dashed border-accent-primary/30"
+                    />
+                    <div className="absolute inset-0 flex items-center justify-center text-accent-primary">
+                      {sending ? <Activity size={32} className="animate-pulse" /> : <Send size={32} />}
+                    </div>
+                  </div>
+                  <h3 className="text-2xl font-bold text-white mb-2 tracking-tight">Access Granted.</h3>
+                  <p className="text-sm font-mono text-secondary uppercase tracking-widest">
+                    Initializing {selectedRole.toUpperCase()}_PROFILE...
                   </p>
                 </div>
               )}
             </div>
 
-            {/* Close button for manual exit */}
             {!selectedRole && (
               <button
                 onClick={() => {
-                  localStorage.setItem('portfolio_visit_v2', 'true');
+                  localStorage.setItem('portfolio_visit_v3', 'true');
                   setIsOpen(false);
                 }}
-                className="absolute top-4 right-4 text-text-secondary hover:text-white transition-colors"
+                className="absolute top-4 right-4 p-2 text-secondary hover:text-white transition-colors z-20"
               >
                 <X size={20} />
               </button>
             )}
-
           </motion.div>
         </motion.div>
       )}

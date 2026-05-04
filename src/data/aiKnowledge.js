@@ -1,44 +1,29 @@
 export const KNOWLEDGE_BASE = {
-  profile: {
-    name: "Raman Sharma",
-    current_role: "Software Engineer focusing on Data Systems and AI Infrastructure",
-    location: "New Delhi, India",
-    education: "B.Tech in Electrical Engineering from Delhi Technological University (DTU), 2026.",
-    contact: {
-      email: "ramansharma6201@gmail.com",
-      linkedin: "raman-sharma-71371024a",
-      github: "GLITCHINvision"
-    }
-  },
   mapping: [
     {
-      keywords: ["tech", "stack", "skills", "languages", "tools", "programming"],
-      response: "Raman is proficient in C++, Python, JavaScript, and SQL. His specialized stack includes React.js, Node.js, Flask, Azure, and Docker, with a strong focus on AI/ML tools like TensorFlow and PyTorch."
+      keywords: ["tech", "stack", "languages", "frameworks", "skills"],
+      response: "Raman is proficient in C++, Python, JavaScript, and SQL. His frontend expertise includes React.js and Tailwind CSS, while his backend skills span Node.js, Express, Flask, and Django. He also works with AI/ML tools like TensorFlow and PyTorch."
     },
     {
-      keywords: ["experience", "work", "intern", "hcds", "yelosoul", "job", "career"],
-      response: "Raman has experience as an SDE Intern at HCDS Technologies (Azure, Microservices) and as a Co-Founder/Full Stack Developer at YeloSoul (MERN stack, E-commerce). He has a track record of improving system scalability by up to 35%."
+      keywords: ["work", "experience", "internship", "intern"],
+      response: "Raman has interned as an SDE at HCDS Technologies, where he built enterprise AI solutions. He also co-founded YeloSoul, leading technical development for a high-traffic e-commerce platform, and worked as a Data Analyst Intern at NayePankh Foundation."
     },
     {
-      keywords: ["project", "fact-checker", "rag", "analytics", "data mesh", "portfolio"],
-      response: "Notable projects include a Fact-Checker RAG Chatbot (React/Flask/RAG) and a Data Mesh Analytics Pipeline (Python/PostgreSQL/Airflow). These projects focus on real-time data verification and decentralized data architecture."
+      keywords: ["philosophy", "approach", "principles"],
+      response: "Raman follows three core principles: First Principles Thinking (deconstructing complex systems), Scalability by Design (architecting for growth), and The Human Element (ensuring technology enhances human potential)."
     },
     {
-      keywords: ["hire", "hr", "recruiter", "why", "impress", "strongest", "best"],
-      response: "You should hire Raman because he bridges the gap between high-level AI innovation and low-level systems engineering. He focuses on 'First Principles' thinking and 'Scalability by Design' to build software that is both intelligent and production-ready."
+      keywords: ["hire", "why", "benefits", "value"],
+      response: "Raman is a versatile engineer who operates at the intersection of software engineering, data systems, and AI. His ability to build scalable infrastructures and deploy intelligent models makes him a valuable asset for any high-growth tech team."
     },
     {
-      keywords: ["education", "college", "university", "dtu", "degree", "gpa", "study"],
-      response: "Raman is pursuing a B.Tech in Electrical Engineering at Delhi Technological University (DTU), class of 2026. He maintains a focus on Data Structures, Algorithms, and AI-driven smart grids."
+      keywords: ["education", "dtu", "college", "degree"],
+      response: "Raman is currently pursuing a B.Tech in Electrical Engineering at Delhi Technological University (DTU), class of 2026. He has a strong foundation in Data Structures, Algorithms, and Database Management Systems."
     },
     {
-      keywords: ["contact", "email", "reach", "linkedin", "github", "connect", "social"],
-      response: "You can reach Raman at ramansharma6201@gmail.com. You can also find him on LinkedIn (raman-sharma-71371024a) and GitHub (GLITCHINvision)."
-    },
-    {
-      keywords: ["philosophy", "think", "principles", "approach", "strategy"],
-      response: "Raman's engineering philosophy is built on three pillars: First Principles Thinking, Scalability by Design, and Human-Centric AI development."
+      keywords: ["projects", "built", "portfolio"],
+      response: "Raman's key projects include the YeloSoul E-commerce Platform, a Fact-Checker RAG Chatbot, a Campus Placement Chatbot, and a Data Mesh Analytics Pipeline. You can explore them in detail in the 'Work' section."
     }
   ],
-  fallback: "I'm specialized in Raman's professional profile. Could you specify your inquiry about his tech stack, work experience, or a specific project? You can also contact him directly at ramansharma6201@gmail.com."
+  fallback: "I don't have specific data on that query. You might want to ask about Raman's technical stack, work experience, or his projects for more detailed information."
 };

@@ -47,9 +47,9 @@ const AIAgent = () => {
         whileHover={{ scale: 1.05 }}
         whileTap={{ scale: 0.95 }}
         onClick={() => setIsOpen(!isOpen)}
-        className="w-14 h-14 rounded-2xl bg-[#0F1115] border border-glass-border flex items-center justify-center text-accent-blue shadow-2xl relative group overflow-hidden"
+        className="w-14 h-14 rounded-2xl bg-[#0F1115] border border-glass-border flex items-center justify-center text-accent-primary shadow-2xl relative group overflow-hidden"
       >
-        <div className="absolute inset-0 bg-accent-blue/5 opacity-0 group-hover:opacity-100 transition-opacity" />
+        <div className="absolute inset-0 bg-accent-primary/5 opacity-0 group-hover:opacity-100 transition-opacity" />
         <AnimatePresence mode="wait">
           {isOpen ? (
             <motion.div key="close" initial={{ rotate: -90, opacity: 0 }} animate={{ rotate: 0, opacity: 1 }} exit={{ rotate: 90, opacity: 0 }}>
@@ -57,7 +57,7 @@ const AIAgent = () => {
             </motion.div>
           ) : (
             <motion.div key="open" initial={{ rotate: 90, opacity: 0 }} animate={{ rotate: 0, opacity: 1 }} exit={{ rotate: -90, opacity: 0 }}>
-              <Cpu size={24} className="animate-pulse shadow-[0_0_15px_rgba(79,140,255,0.5)]" />
+              <Cpu size={24} className="animate-pulse shadow-[0_0_15px_rgba(204,255,0,0.5)]" />
             </motion.div>
           )}
         </AnimatePresence>
@@ -80,21 +80,21 @@ const AIAgent = () => {
             {/* Header */}
             <div className="p-5 border-b border-glass-border bg-white/5 flex items-center justify-between safe-top">
               <div className="flex items-center gap-3">
-                <div className="p-2.5 rounded-xl bg-accent-blue/10 text-accent-blue">
+                <div className="p-2.5 rounded-xl bg-accent-primary/10 text-accent-primary">
                   <Terminal size={20} />
                 </div>
                 <div>
                   <h3 className="text-sm font-bold text-white tracking-widest uppercase font-mono">Core Intelligence</h3>
                   <div className="flex items-center gap-1.5">
                     <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
-                    <span className="text-[10px] text-text-secondary uppercase tracking-tighter">System Synchronized</span>
+                    <span className="text-[10px] text-secondary uppercase tracking-tighter">System Synchronized</span>
                   </div>
                 </div>
               </div>
               <motion.button
                 whileTap={{ scale: 0.9 }}
                 onClick={() => setIsOpen(false)}
-                className="p-2 rounded-full hover:bg-white/10 text-text-secondary hover:text-white transition-colors"
+                className="p-2 rounded-full hover:bg-white/10 text-secondary hover:text-white transition-colors"
               >
                 <X size={24} />
               </motion.button>
@@ -114,7 +114,7 @@ const AIAgent = () => {
                   className="absolute inset-0 opacity-[0.4]"
                   style={{
                     perspective: '1200px',
-                    backgroundImage: `linear-gradient(rgba(79, 140, 255, 0.4) 1.5px, transparent 1.5px), linear-gradient(90deg, rgba(79, 140, 255, 0.4) 1.5px, transparent 1.5px)`,
+                    backgroundImage: `linear-gradient(rgba(204, 255, 0, 0.4) 1.5px, transparent 1.5px), linear-gradient(90deg, rgba(204, 255, 0, 0.4) 1.5px, transparent 1.5px)`,
                     backgroundSize: '50px 50px'
                   }}
                 />
@@ -125,7 +125,7 @@ const AIAgent = () => {
                   transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
                   className="absolute inset-0"
                   style={{
-                    backgroundImage: `linear-gradient(rgba(79, 140, 255, 0.2) 1px, transparent 1px), linear-gradient(90deg, rgba(79, 140, 255, 0.2) 1px, transparent 1px)`,
+                    backgroundImage: `linear-gradient(rgba(204, 255, 0, 0.2) 1px, transparent 1px), linear-gradient(90deg, rgba(204, 255, 0, 0.2) 1px, transparent 1px)`,
                     backgroundSize: '10px 10px'
                   }}
                 />
@@ -135,7 +135,7 @@ const AIAgent = () => {
                   {[...Array(10)].map((_, i) => (
                     <div
                       key={i}
-                      className="absolute w-1 h-1 bg-accent-blue rounded-full blur-[0.5px] animate-[particle-drift_12s_linear_infinite]"
+                      className="absolute w-1 h-1 bg-accent-primary rounded-full blur-[0.5px] animate-[particle-drift_12s_linear_infinite]"
                       style={{
                         left: `${(i * 19) % 100}%`,
                         top: `${(i * 31) % 100}%`,
@@ -148,11 +148,11 @@ const AIAgent = () => {
                 </div>
 
                 {/* Ambient Glow */}
-                <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_40%,rgba(79,140,255,0.2)_0%,transparent_80%)]" />
+                <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_40%,rgba(204,255,0,0.2)_0%,transparent_80%)]" />
 
                 {/* Scanline Overlay */}
                 <div className="absolute inset-0 overflow-hidden opacity-30">
-                  <div className="w-full h-24 bg-gradient-to-b from-transparent via-accent-blue/10 to-transparent -translate-y-full animate-[scan_6s_linear_infinite]" />
+                  <div className="w-full h-24 bg-gradient-to-b from-transparent via-accent-primary/10 to-transparent -translate-y-full animate-[scan_6s_linear_infinite]" />
                 </div>
               </div>
 
@@ -167,13 +167,13 @@ const AIAgent = () => {
                       className={`flex ${msg.role === 'user' ? 'justify-end' : 'justify-start'}`}
                     >
                       <div className={`max-w-[90%] sm:max-w-[85%] flex gap-3 ${msg.role === 'user' ? 'flex-row-reverse' : 'flex-row'}`}>
-                        <div className={`w-8 h-8 rounded-lg flex items-center justify-center shrink-0 ${msg.role === 'user' ? 'bg-accent-blue/10 text-accent-blue' : 'bg-white/5 text-text-secondary shadow-inner'
+                        <div className={`w-8 h-8 rounded-lg flex items-center justify-center shrink-0 ${msg.role === 'user' ? 'bg-accent-primary/10 text-accent-primary' : 'bg-white/5 text-secondary shadow-inner'
                           }`}>
                           {msg.role === 'user' ? <User size={14} /> : <Sparkles size={14} />}
                         </div>
                         <div className={`p-4 rounded-2xl text-sm leading-relaxed ${msg.role === 'user'
-                          ? 'bg-accent-blue text-white rounded-tr-none shadow-[0_4px_20px_rgba(79,140,255,0.4)]'
-                          : 'bg-white/5 text-text-primary border border-glass-border rounded-tl-none backdrop-blur-md'
+                          ? 'bg-accent-primary text-bg-dark rounded-tr-none shadow-[0_4px_20px_rgba(204,255,0,0.4)]'
+                          : 'bg-white/5 text-primary border border-glass-border rounded-tl-none backdrop-blur-md'
                           }`}>
                           {msg.text}
                         </div>
@@ -184,9 +184,9 @@ const AIAgent = () => {
                     <div className="flex justify-start">
                       <div className="flex gap-3 items-center bg-white/5 border border-glass-border p-3 rounded-2xl">
                         <div className="flex gap-1.5">
-                          <motion.span animate={{ opacity: [0.3, 1, 0.3] }} transition={{ repeat: Infinity, duration: 1 }} className="w-1.5 h-1.5 bg-accent-blue rounded-full" />
-                          <motion.span animate={{ opacity: [0.3, 1, 0.3] }} transition={{ repeat: Infinity, duration: 1, delay: 0.2 }} className="w-1.5 h-1.5 bg-accent-blue rounded-full" />
-                          <motion.span animate={{ opacity: [0.3, 1, 0.3] }} transition={{ repeat: Infinity, duration: 1, delay: 0.4 }} className="w-1.5 h-1.5 bg-accent-blue rounded-full" />
+                          <motion.span animate={{ opacity: [0.3, 1, 0.3] }} transition={{ repeat: Infinity, duration: 1 }} className="w-1.5 h-1.5 bg-accent-primary rounded-full" />
+                          <motion.span animate={{ opacity: [0.3, 1, 0.3] }} transition={{ repeat: Infinity, duration: 1, delay: 0.2 }} className="w-1.5 h-1.5 bg-accent-primary rounded-full" />
+                          <motion.span animate={{ opacity: [0.3, 1, 0.3] }} transition={{ repeat: Infinity, duration: 1, delay: 0.4 }} className="w-1.5 h-1.5 bg-accent-primary rounded-full" />
                         </div>
                       </div>
                     </div>
@@ -205,7 +205,7 @@ const AIAgent = () => {
                     <button
                       key={i}
                       onClick={() => handleSend(s)}
-                      className="text-[10px] px-3.5 py-2 rounded-full border border-glass-border bg-black/40 text-text-secondary hover:border-accent-blue hover:text-accent-blue transition-all uppercase tracking-wider font-mono backdrop-blur-sm"
+                      className="text-[10px] px-3.5 py-2 rounded-full border border-glass-border bg-black/40 text-secondary hover:border-accent-primary hover:text-accent-primary transition-all uppercase tracking-wider font-mono backdrop-blur-sm"
                     >
                       {s}
                     </button>
@@ -220,17 +220,17 @@ const AIAgent = () => {
                   onChange={(e) => setInput(e.target.value)}
                   onKeyPress={(e) => e.key === 'Enter' && handleSend()}
                   placeholder="Query system knowledge..."
-                  className="w-full bg-black/60 border border-glass-border rounded-2xl py-4 pl-5 pr-14 text-sm text-white placeholder:text-text-secondary focus:outline-none focus:border-accent-blue transition-all font-mono"
+                  className="w-full bg-black/60 border border-glass-border rounded-2xl py-4 pl-5 pr-14 text-sm text-white placeholder:text-secondary focus:outline-none focus:border-accent-primary transition-all font-mono"
                 />
                 <button
                   onClick={() => handleSend()}
                   disabled={!input.trim() || isLoading}
-                  className="absolute right-2.5 top-1/2 -translate-y-1/2 p-2.5 rounded-xl bg-accent-blue/10 text-accent-blue hover:bg-accent-blue hover:text-white transition-all disabled:opacity-50 disabled:cursor-not-allowed shadow-lg"
+                  className="absolute right-2.5 top-1/2 -translate-y-1/2 p-2.5 rounded-xl bg-accent-primary/10 text-accent-primary hover:bg-accent-primary hover:text-white transition-all disabled:opacity-50 disabled:cursor-not-allowed shadow-lg"
                 >
                   <Send size={18} />
                 </button>
               </div>
-              <p className="text-[9px] text-center text-text-secondary uppercase tracking-[0.3em] font-mono opacity-40">
+              <p className="text-[9px] text-center text-secondary uppercase tracking-[0.3em] font-mono opacity-40">
                 Neural Protocol // SECURE_LINK
               </p>
             </div>

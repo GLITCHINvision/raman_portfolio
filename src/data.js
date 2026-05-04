@@ -39,10 +39,9 @@ export const EXPERIENCE = [
     date: "Aug 2025 – Oct 2025",
     desc: "Architected enterprise AI solutions and high-performance microservices.",
     details: [
-      "Developed an enterprise grade AI chatbot using Azure Cognitive Services and Bot Framework, handling complex user intents.",
-      "Designed and implemented modular microservices using Node.js and Azure Functions, improving system scalability by 35%.",
-      "Optimized NLP model integration which resulted in a 25% reduction in API response latency.",
-      "Managed data persistence layers using Azure Blob Storage and Cosmos DB for high availability requirements."
+      "Developed an enterprise grade AI chatbot using Azure Cognitive Services and Bot Framework.",
+      "Designed and implemented modular microservices using Node.js and Azure Functions.",
+      "Optimized NLP model integration which resulted in a 25% reduction in API response latency."
     ]
   },
   {
@@ -51,65 +50,85 @@ export const EXPERIENCE = [
     date: "Dec 2024 – Oct 2025",
     desc: "Led technical development for a secure, high-traffic e-commerce ecosystem.",
     details: [
-      "Built a full stack e-commerce platform using the MERN stack, supporting secure JWT authentication and RBAC.",
-      "Engineered automated payment processing pipelines and real time order tracking systems, reducing manual overhead by 60%.",
-      "Optimized database queries and API response times by 40% through strategic indexing and caching.",
-      "Spearheaded UI/UX redesigns and integrated advanced analytics, leading to a significant increase in user retention."
+      "Built a full stack e-commerce platform using the MERN stack with secure JWT and RBAC.",
+      "Engineered automated payment processing pipelines and real-time order tracking systems.",
+      "Optimized database queries and API response times by 40% through strategic indexing."
     ]
   },
   {
     role: "Data Analyst Intern",
     company: "NayePankh Foundation",
     date: "Nov 2024 – Dec 2024",
-    desc: "Leveraged data driven insights to optimize fundraising and engagement strategies.",
+    desc: "Leveraged data-driven insights to optimize fundraising and engagement strategies.",
     details: [
-      "Processed and analyzed multi-year donor datasets using Python (Pandas/NumPy) to reveal hidden engagement patterns.",
-      "Designed automated reporting dashboards that provided actionable insights for strategic fundraising decisions.",
-      "Improved donor retention outreach effectiveness by 20% through targeted segmentation analysis."
+      "Processed and analyzed multi-year donor datasets using Python to reveal engagement patterns.",
+      "Designed automated reporting dashboards providing actionable insights for strategic decisions.",
+      "Improved donor retention outreach effectiveness by 20% through segmentation analysis."
     ]
   }
 ];
 
 export const PROJECTS = [
   {
+    title: "AI Insight Engine",
+    tech: "Python · SQLite · Gemini API · Streamlit",
+    desc: "Automated data sanitization pipeline and AI analytics interface translating natural language into SQL insights.",
+    link: "https://github.com/GLITCHINvision/assesment1-",
+    details: [
+      "Developed an automated ETL pipeline for cleaning high-variance CSV data using IQR outlier detection.",
+      "Designed a Star Schema database architecture to unify Facebook Ads and Shopify backend metrics.",
+      "Integrated Gemini API to build a natural language interface (Text-to-SQL) for autonomous querying."
+    ]
+  },
+  {
+    title: "TaskFlow // Neural Task Mesh",
+    tech: "Next.js 15 · Express.js · Prisma · SQL",
+    desc: "High-concurrency task orchestration system with layered architecture, JWT security, and real-time cognitive analytics.",
+    link: "https://github.com/GLITCHINvision/assignment_task_management-",
+    details: [
+      "Architected a multi-tier backend using the Service-Repository pattern for maximum separation of concerns.",
+      "Integrated Prisma ORM with SQLite for persistent, high-performance data state management.",
+      "Developed a fluid, motion-driven UI using Framer Motion for seamless state transitions."
+    ]
+  },
+  {
     title: "YeloSoul E-commerce Platform",
     tech: "MERN Stack · Vercel · Render",
-    desc: "Developed a secure and responsive e-commerce web app with role based access, REST APIs, and product dashboards.",
+    desc: "Secure and responsive e-commerce web app with role-based access, REST APIs, and product dashboards.",
     link: "https://github.com/GLITCHINvision/yelosoul",
     details: [
-      "Developed a secure and responsive e-commerce web app with role based access, REST APIs, and product dashboards.",
-      "Integrated Google OAuth and real-time order updates using WebSockets and MongoDB Atlas."
+      "Developed a secure e-commerce web app with JWT authentication and RBAC.",
+      "Integrated Google OAuth and real-time updates using WebSockets and MongoDB Atlas."
     ]
   },
   {
     title: "Fact-Checker RAG Chatbot",
-    tech: "React · Flask · Hugging Face · NewsAPI",
-    desc: "Built an AI chatbot for real time fact verification using Retrieval Augmented Generation, improving factual accuracy by 30%.",
+    tech: "React · Flask · Hugging Face",
+    desc: "AI chatbot for real-time fact verification using RAG, improving factual accuracy by 30%.",
     link: "https://factcheck-frontend.vercel.app/",
     details: [
       "Built an AI chatbot for real-time fact verification using Retrieval Augmented Generation.",
-      "Improved factual accuracy by 30% through contextual document retrieval.",
-      "Added voice input, dark/light modes, and verified only response toggle."
+      "Improved accuracy by 30% through contextual document retrieval."
     ]
   },
   {
     title: "Campus Placement Chatbot",
-    tech: "React · Flask · Render · Vercel",
-    desc: "Developed a full-stack chatbot answering placement queries using structured datasets, supporting 24/7 access.",
+    tech: "React · Flask · Render",
+    desc: "Full-stack chatbot answering placement queries using structured datasets, supporting 24/7 access.",
     link: "https://campusbot-frontend.onrender.com/",
     details: [
       "Developed a chatbot answering placement queries using structured datasets and filters.",
-      "Deployed a full stack application supporting 24/7 access."
+      "Deployed a full-stack application supporting 24/7 access."
     ]
   },
   {
     title: "Data Mesh Analytics Pipeline",
-    tech: "Python · PostgreSQL · dbt · Airflow · Docker",
-    desc: "Implemented a domain-driven analytics architecture enabling decentralized data ownership and improved analytics turnaround.",
+    tech: "Python · PostgreSQL · Airflow",
+    desc: "Domain-driven analytics architecture enabling decentralized data ownership and improved turnaround.",
     link: "https://github.com/GLITCHINvision/data_mesh_project-",
     details: [
       "Implemented a domain-driven analytics architecture enabling decentralized data ownership.",
-      "Improved scalability and analytics turnaround time."
+      "Improved scalability and analytics turnaround time significantly."
     ]
   }
 ];
@@ -128,11 +147,11 @@ export const EDUCATION = [
     institution: "Delhi Technological University (DTU)",
     date: "2022 – 2026",
     degree: "B.Tech in Electrical Engineering",
-    gpa: "CGPA: 6.70 / 10.0",
+    gpa: "CGPA: 7.0 / 10.0",
     details: [
-      "Core Coursework: Data Structures & Algorithms, Object-Oriented Programming, Database Management Systems, Power Systems, Control Systems.",
+      "Core Coursework: Data Structures & Algorithms, OOPs, DBMS, Power Systems, Control Systems.",
       "Relevant Projects: Impact of Power Electronics in AI-driven smart grids.",
-      "Achievements: Active member of Technical Societies; participated in multiple national-level hackathons (Flipkart Grid 6.0, TATA Imagination)."
+      "Achievements: Participated in national-level hackathons (Flipkart Grid 6.0, TATA Imagination)."
     ]
   }
 ];
