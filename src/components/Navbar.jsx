@@ -1,12 +1,19 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Menu, X } from 'lucide-react';
+import { Menu, X, Cpu, Zap, Radio } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
-const Navbar = ({ recruiterMode, toggleMode }) => {
+const Navbar = ({ isSynced }) => {
   const [isOpen, setIsOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
   const location = useLocation();
   const isHome = location.pathname === '/';
+
+  useEffect(() => {
+    const handleScroll = () => setScrolled(window.scrollY > 50);
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   const scrollToSection = (id) => {
     setIsOpen(false);
@@ -16,167 +23,95 @@ const Navbar = ({ recruiterMode, toggleMode }) => {
         if (element) {
           element.scrollIntoView({ behavior: 'smooth' });
         }
-      }, 100); // Small delay to allow menu to close
+      }, 100);
     }
   };
 
   const navLinks = [
-    { name: 'About', id: 'about', type: 'section' },
-    { name: 'Work', id: 'work', type: 'section' },
-    { name: 'Contact', id: 'contact', type: 'section' },
-    { name: 'Resume', to: '/resume', type: 'link' },
+    { name: 'About', id: 'about' },
+    { name: 'Work', id: 'work' },
+    { name: 'Sync', id: 'iq-test' },
+    { name: 'Contact', id: 'contact' },
   ];
 
   return (
-    <nav className="fixed top-0 w-full py-4 backdrop-blur-xl z-[1000] border-b border-glass-white nav-bg">
-      <div className="container flex justify-between items-center relative">
-        <Link to="/" onClick={() => setIsOpen(false)} className="no-underline uppercase whitespace-nowrap logo font-bold text-sm tracking-widest relative z-[60]">
-          RAMAN SHARMA
-        </Link>
+    <nav className={`fixed top-0 w-full transition-all duration-500 z-[1000] ${scrolled ? 'bg-bg-dark/80 backdrop-blur-xl border-b border-white/5 py-3 md:py-4' : 'bg-transparent py-4 md:py-6'}`}>
+      <div className="container px-4 md:px-6 flex justify-between items-center relative">
+        <div className="flex items-center gap-4 md:gap-8">
+          <Link to="/" onClick={() => setIsOpen(false)} className="group flex items-center gap-3 no-underline">
+            <div className={`w-10 h-10 rounded-xl border flex items-center justify-center transition-all duration-500 ${isSynced ? 'bg-accent-primary border-accent-primary shadow-[0_0_15px_var(--accent-glow)]' : 'bg-white/5 border-white/10'}`}>
+              <Cpu size={20} className={isSynced ? 'text-bg-dark' : 'text-white'} />
+            </div>
+            <div className="hidden sm:block">
+              <span className="block text-sm font-bold text-white tracking-tighter uppercase leading-none">Raman Sharma</span>
+              <span className={`text-[10px] font-mono uppercase tracking-[0.2em] transition-colors duration-500 ${isSynced ? 'text-accent-primary' : 'text-secondary'}`}>
+                {isSynced ? 'System Synchronized' : 'Uncalibrated Core'}
+              </span>
+            </div>
+          </Link>
+        </div>
 
-        {/* Desktop Links */}
-        <div className="hidden md:flex items-center gap-10">
-          <div className="flex items-center gap-8">
-            {isHome ? (
-              <>
-                {navLinks.slice(0, 3).map((link) => (
-                  <a
-                    key={link.id}
-                    href={`#${link.id}`}
-                    onClick={(e) => { e.preventDefault(); scrollToSection(link.id); }}
-                    className="text-text-secondary no-underline font-mono uppercase transition-colors hover:text-primary text-xs tracking-widest"
-                  >
-                    {link.name}
-                  </a>
-                ))}
-              </>
-            ) : (
-              <Link to="/" className="text-text-secondary no-underline font-mono uppercase transition-colors hover:text-primary text-xs tracking-widest">Home</Link>
-            )}
-            <Link
-              to="/resume"
-              className={`text-xs font-mono uppercase transition-colors tracking-widest ${location.pathname === '/resume' ? 'text-accent-blue font-bold' : 'text-text-secondary hover:text-primary'}`}
+        {/* Desktop Navigation */}
+        <div className="hidden lg:flex items-center gap-10">
+          <div className="flex items-center gap-8 px-6 py-2 rounded-full border border-white/5 bg-white/[0.02] backdrop-blur-md">
+            {navLinks.map((link) => (
+              <a
+                key={link.id}
+                href={`#${link.id}`}
+                onClick={(e) => { e.preventDefault(); scrollToSection(link.id); }}
+                className="text-[10px] font-mono uppercase tracking-[0.2em] text-secondary hover:text-accent-primary transition-colors no-underline"
+              >
+                {link.name}
+              </a>
+            ))}
+            <Link 
+              to="/resume" 
+              className="text-[10px] font-mono uppercase tracking-[0.2em] text-secondary hover:text-accent-primary transition-colors no-underline"
             >
               Resume
             </Link>
           </div>
 
-          <button
-            onClick={toggleMode}
-            className="flex items-center gap-3 cursor-pointer transition-all hover:opacity-80 group"
-            aria-label="Toggle Recruiter Mode"
-          >
-            <div className={`relative w-10 h-5 border border-glass-border rounded-full overflow-hidden transition-all duration-300 ${recruiterMode ? 'bg-accent-blue' : 'bg-bg-dark'}`}>
-              <div
-                className={`absolute w-3.5 h-3.5 bg-text-primary rounded-full transition-all duration-300 top-[2px] left-[2px] ${recruiterMode ? 'translate-x-[20px]' : 'translate-x-0'}`}
-              ></div>
+          <div className="flex items-center gap-4">
+            <div className={`flex items-center gap-2 px-3 py-1.5 rounded-lg border text-[10px] font-mono tracking-widest transition-all duration-500 ${isSynced ? 'bg-accent-primary/10 border-accent-primary text-accent-primary shadow-[0_0_15px_var(--accent-glow)]' : 'bg-white/5 border-white/10 text-secondary'}`}>
+              {isSynced ? <Zap size={12} className="animate-pulse" /> : <Radio size={12} />}
+              {isSynced ? 'NODE_SYNC: OK' : 'NODE_SYNC: OFFLINE'}
             </div>
-            <span className={`font-mono uppercase text-[10px] tracking-widest transition-colors ${recruiterMode ? 'text-accent-blue' : 'text-text-secondary group-hover:text-text-primary'}`}>
-              {recruiterMode ? 'RCRTR' : 'STORY'}
-            </span>
-          </button>
+          </div>
         </div>
 
-        {/* Mobile Controls */}
-        <div className="flex md:hidden items-center gap-4 relative z-50">
-          <button
-            onClick={toggleMode}
-            className="flex items-center gap-2 relative z-[60] p-2"
-            aria-label="Toggle Recruiter Mode"
-          >
-            <div className={`relative w-10 h-5 border border-glass-border rounded-full overflow-hidden transition-all duration-300 ${recruiterMode ? 'bg-accent-blue' : 'bg-bg-dark'}`}>
-              <div
-                className={`absolute w-3.5 h-3.5 bg-white rounded-full transition-all duration-300 top-[2px] left-[2px] ${recruiterMode ? 'translate-x-[20px]' : 'translate-x-0'}`}
-              ></div>
-            </div>
-          </button>
-
-          <motion.button
-            whileTap={{ scale: 0.9 }}
-            onClick={() => setIsOpen(!isOpen)}
-            className="relative z-[60] flex items-center justify-center w-10 h-10 rounded-full border border-glass-border bg-bg-dark/50 backdrop-blur-md text-text-primary transition-colors hover:border-accent-blue hover:text-accent-blue"
-            aria-label="Toggle Menu"
-          >
-            <AnimatePresence mode="wait">
-              {isOpen ? (
-                <motion.div
-                  key="close"
-                  initial={{ rotate: -90, opacity: 0 }}
-                  animate={{ rotate: 0, opacity: 1 }}
-                  exit={{ rotate: 90, opacity: 0 }}
-                  transition={{ duration: 0.2 }}
-                >
-                  <X size={20} />
-                </motion.div>
-              ) : (
-                <motion.div
-                  key="menu"
-                  initial={{ rotate: 90, opacity: 0 }}
-                  animate={{ rotate: 0, opacity: 1 }}
-                  exit={{ rotate: -90, opacity: 0 }}
-                  transition={{ duration: 0.2 }}
-                >
-                  <Menu size={20} />
-                </motion.div>
-              )}
-            </AnimatePresence>
-          </motion.button>
-        </div>
-
-        {/* Mobile Menu Background Overlay */}
-        <AnimatePresence>
-          {isOpen && (
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.3 }}
-              className="fixed inset-0 bg-black/80 backdrop-blur-sm z-40 md:hidden"
-              onClick={() => setIsOpen(false)}
-            />
-          )}
-        </AnimatePresence>
+        {/* Mobile Toggle */}
+        <button 
+          onClick={() => setIsOpen(!isOpen)}
+          className="lg:hidden p-3 rounded-xl border border-white/5 bg-white/5 text-white flex items-center justify-center"
+        >
+          {isOpen ? <X size={24} /> : <Menu size={24} />}
+        </button>
 
         {/* Mobile Menu Overlay */}
         <AnimatePresence>
           {isOpen && (
             <motion.div
-              initial={{ opacity: 0, height: 0 }}
-              animate={{ opacity: 1, height: 'auto' }}
-              exit={{ opacity: 0, height: 0 }}
-              transition={{ duration: 0.3, ease: 'easeInOut' }}
-              className="absolute top-full left-0 w-full bg-[#050505] border-b border-glass-border py-10 px-8 md:hidden overflow-hidden shadow-2xl z-50"
+              initial={{ opacity: 0, y: -20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -20 }}
+              className="absolute top-full left-0 right-0 p-4 lg:hidden"
             >
-              <div className="flex flex-col gap-8">
-                {isHome ? (
-                  <>
-                    {navLinks.slice(0, 3).map((link) => (
-                      <a
-                        key={link.id}
-                        href={`#${link.id}`}
-                        onClick={(e) => {
-                          e.preventDefault();
-                          scrollToSection(link.id);
-                        }}
-                        className="text-text-primary no-underline font-mono uppercase text-xl tracking-widest border-l-2 border-transparent hover:border-accent-blue pl-6 transition-all hover:pl-8 active:text-accent-blue"
-                      >
-                        {link.name}
-                      </a>
-                    ))}
-                  </>
-                ) : (
-                  <Link
-                    to="/"
-                    onClick={() => setIsOpen(false)}
-                    className="text-text-primary no-underline font-mono uppercase text-xl tracking-widest border-l-2 border-transparent hover:border-accent-blue pl-6 transition-all hover:pl-8"
+              <div className="smart-card bg-[#08090A]/95 backdrop-blur-3xl border-accent-primary/20 p-8 space-y-6 shadow-2xl">
+                {navLinks.map((link) => (
+                  <a
+                    key={link.id}
+                    href={`#${link.id}`}
+                    onClick={(e) => { e.preventDefault(); scrollToSection(link.id); }}
+                    className="block text-2xl font-bold text-white no-underline hover:text-accent-primary transition-colors"
                   >
-                    Home
-                  </Link>
-                )}
+                    {link.name}
+                  </a>
+                ))}
                 <Link
                   to="/resume"
                   onClick={() => setIsOpen(false)}
-                  className={`no-underline font-mono uppercase text-xl tracking-widest border-l-2 pl-6 transition-all hover:pl-8 ${location.pathname === '/resume' ? 'text-accent-blue border-accent-blue' : 'text-text-primary border-transparent'}`}
+                  className="block text-2xl font-bold text-white no-underline hover:text-accent-primary transition-colors"
                 >
                   Resume
                 </Link>

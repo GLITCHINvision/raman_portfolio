@@ -1,93 +1,151 @@
-import React from 'react';
-import { motion } from 'framer-motion';
+import React, { useState, useEffect } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import { PROFILE } from '../data';
+import { Terminal, Shield, Zap, Activity } from 'lucide-react';
 
-const Hero = ({ recruiterMode }) => {
+const Hero = ({ recruiterMode, isSynced }) => {
+  const [typedHeadline, setTypedHeadline] = useState('');
+  const fullHeadline = PROFILE.headline;
 
-  const fadeInUp = {
-    hidden: { opacity: 0, y: 20 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } }
-  };
-
+  useEffect(() => {
+    let i = 0;
+    const interval = setInterval(() => {
+      setTypedHeadline(fullHeadline.slice(0, i));
+      i++;
+      if (i > fullHeadline.length) clearInterval(interval);
+    }, 40);
+    return () => clearInterval(interval);
+  }, []);
 
   const container = {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
-      transition: {
-        staggerChildren: 0.2
-      }
+      transition: { staggerChildren: 0.1 }
     }
   };
 
-  if (recruiterMode) {
-    return (
-      <section className="section px-4" style={{ paddingTop: '220px' }}>
-        <div className="container max-w-screen-md flex flex-col items-center md:items-start text-center md:text-left">
-          <span className="text-accent-blue font-mono text-sm font-bold tracking-widest block mb-4 uppercase">EXECUTIVE SUMMARY</span>
-          <h1 className="text-2xl md:text-3xl lg:text-4xl font-bold mb-6 text-text-primary block leading-tight">{PROFILE.name} — {PROFILE.role}</h1>
-          <p className="text-base md:text-lg text-text-secondary leading-relaxed mb-8">
-            Software Engineer specializing in <strong className="text-text-primary font-bold">AI driven applications</strong> and <strong className="text-text-primary font-bold">scalable backend systems</strong>.
-            History of delivering high impact projects (30% accuracy boost in RAG pipelines, 40% API optimization).
-            Ready to architect production grade intelligence for your team.
-          </p>
-          <div className="flex flex-col items-center gap-4 md:flex-row md:items-center">
-            <a href={`mailto:${PROFILE.socials.email}`} className="text-accent-blue no-underline font-medium border-bottom pb-1 hover-text-primary transition-all text-sm md:text-base">
-              {PROFILE.socials.email}
-            </a>
-            <span className="text-text-secondary opacity-50 hidden md:inline">•</span>
-            <span className="text-text-secondary text-sm">Feel free to contact me for opportunities.</span>
-          </div>
-        </div>
-      </section>
-    );
-  }
+  const item = {
+    hidden: { opacity: 0, y: 20 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: [0.2, 1, 0.3, 1] } }
+  };
 
   return (
-    <main className="min-h-screen flex items-center justify-center py-32 px-6 relative overflow-hidden">
-      {/* Gradient Orbs */}
-      <div className="absolute inset-0 pointer-events-none z-negative">
-        <div className="orb animate-float top-negative-100 left-negative-100" style={{ width: 'clamp(200px, 40vw, 400px)', height: 'clamp(200px, 40vw, 400px)', backgroundColor: '#1e40af', opacity: 0.4 }}></div>
-        <div className="orb animate-float bottom-10 right-negative-50" style={{ width: 'clamp(150px, 30vw, 300px)', height: 'clamp(150px, 30vw, 300px)', backgroundColor: '#3b82f6', opacity: 0.3, animationDelay: '-3s' }}></div>
+    <section className="min-h-screen flex items-center justify-center pt-32 pb-20 px-6 relative overflow-hidden">
+      {/* Background Ambience */}
+      <div className="absolute inset-0 pointer-events-none">
+        <div className={`absolute top-1/4 left-1/4 w-[500px] h-[500px] rounded-full blur-[120px] transition-colors duration-1000 ${isSynced ? 'bg-accent-primary/5' : 'bg-accent-secondary/5'}`} />
+        <div className={`absolute bottom-1/4 right-1/4 w-[400px] h-[400px] rounded-full blur-[100px] transition-colors duration-1000 ${isSynced ? 'bg-accent-secondary/5' : 'bg-accent-primary/5'}`} />
       </div>
 
       <motion.div
-        className="relative z-10 w-full text-left container"
-        style={{ maxWidth: '800px' }}
+        className="container relative z-10 max-w-5xl"
         initial="hidden"
         animate="visible"
         variants={container}
       >
-        <motion.span
-          variants={fadeInUp}
-          className="text-accent-blue uppercase font-mono mb-6 block text-sm tracking-widest"
-        >
-          {PROFILE.role}
-        </motion.span>
+        <div className="flex flex-col lg:flex-row items-start gap-12 lg:gap-20">
+          <div className="flex-1">
+            <motion.div variants={item} className="flex items-center gap-2 mb-6">
+              <div className={`px-3 py-1 rounded-full border text-[10px] font-mono tracking-widest uppercase flex items-center gap-1.5 transition-colors duration-500 ${isSynced ? 'border-accent-primary text-accent-primary' : 'border-glass-border text-secondary'}`}>
+                {isSynced ? <Zap size={10} className="animate-pulse" /> : <Activity size={10} />}
+                {isSynced ? 'Neural Sync Active' : 'System Standby'}
+              </div>
+              <div className="h-px w-8 bg-glass-border"></div>
+              <span className="text-[10px] font-mono text-secondary uppercase tracking-widest">v4.0.2 // Core</span>
+            </motion.div>
 
-        <motion.h1
-          variants={fadeInUp}
-          className="headline font-medium tracking-tight mb-6"
-          style={{ fontSize: 'clamp(2.5rem, 8vw, 4.5rem)' }}
-        >
-          {PROFILE.headline.split(" ").slice(0, 2).join(" ")}<br />
-          {PROFILE.headline.split(" ").slice(2).join(" ")}
-        </motion.h1>
+            <motion.h1 
+              variants={item}
+              className="text-4xl md:text-7xl lg:text-8xl font-bold mb-8 leading-[0.9] tracking-tighter"
+            >
+              <span className="text-white">Engineering</span> <br />
+              <span className={`transition-colors duration-1000 ${isSynced ? 'text-accent-primary' : 'text-accent-secondary'}`}>Intelligence.</span>
+            </motion.h1>
 
-        <motion.p
-          variants={fadeInUp}
-          className="text-text-secondary font-light mb-10 text-lg leading-relaxed"
-          style={{ maxWidth: '600px' }}
-        >
-          {PROFILE.intro.join(" ")}
-        </motion.p>
+            <motion.div variants={item} className="mb-10 min-h-[3rem]">
+              <p className="text-xl md:text-2xl text-secondary font-mono leading-relaxed max-w-2xl">
+                {typedHeadline}
+                <span className="inline-block w-2 h-6 ml-1 bg-accent-primary animate-pulse"></span>
+              </p>
+            </motion.div>
 
-        <motion.div variants={fadeInUp} className="flex flex-wrap gap-6">
-          <a href="#work" className="btn btn-primary">View Work</a>
-          <a href="#contact" className="btn btn-secondary">Get in Touch</a>
-        </motion.div>
+            <motion.div variants={item} className="flex flex-wrap gap-4">
+              <a href="#iq-test" className={`px-8 py-4 rounded-xl font-bold text-sm transition-all duration-500 flex items-center gap-2 ${isSynced ? 'bg-accent-primary text-bg-dark neon-pulse' : 'bg-white text-bg-dark hover:bg-accent-primary'}`}>
+                <Terminal size={18} />
+                INITIALIZE SYNC
+              </a>
+              <a href="#work" className="px-8 py-4 rounded-xl border border-glass-border font-bold text-sm hover:bg-white/5 transition-all flex items-center gap-2">
+                PROJECTS.LOG
+              </a>
+            </motion.div>
+          </div>
+
+          {/* Smart System Status Side Panel */}
+          <motion.div 
+            variants={item}
+            className="lg:w-80 w-full"
+          >
+            <div className="smart-card p-6 bg-white/[0.02] border-white/5 backdrop-blur-md">
+              <div className="space-y-6">
+                <div>
+                  <div className="flex justify-between text-[10px] font-mono text-secondary mb-2 uppercase tracking-widest">
+                    <span>Architecture</span>
+                    <span>100%</span>
+                  </div>
+                  <div className="h-1 bg-white/5 rounded-full overflow-hidden">
+                    <motion.div 
+                      initial={{ width: 0 }} 
+                      animate={{ width: '100%' }} 
+                      transition={{ duration: 2 }}
+                      className="h-full bg-accent-primary"
+                    />
+                  </div>
+                </div>
+                
+                <div>
+                  <div className="flex justify-between text-[10px] font-mono text-secondary mb-2 uppercase tracking-widest">
+                    <span>Performance</span>
+                    <span>{isSynced ? '99.9%' : '84.2%'}</span>
+                  </div>
+                  <div className="h-1 bg-white/5 rounded-full overflow-hidden">
+                    <motion.div 
+                      initial={{ width: 0 }} 
+                      animate={{ width: isSynced ? '99.9%' : '84.2%' }} 
+                      transition={{ duration: 2 }}
+                      className={`h-full transition-colors duration-1000 ${isSynced ? 'bg-accent-primary' : 'bg-accent-secondary'}`}
+                    />
+                  </div>
+                </div>
+
+                <div className="pt-4 border-t border-glass-border">
+                  <div className="grid grid-cols-2 gap-4">
+                    <div className="space-y-1">
+                      <p className="text-[10px] font-mono text-secondary uppercase tracking-widest">Uptime</p>
+                      <p className="text-sm font-bold text-white">99.99%</p>
+                    </div>
+                    <div className="space-y-1">
+                      <p className="text-[10px] font-mono text-secondary uppercase tracking-widest">Security</p>
+                      <p className="text-sm font-bold text-white">ENABLED</p>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="p-3 rounded-lg bg-white/5 border border-white/5 font-mono text-[9px] text-secondary leading-tight uppercase tracking-tighter">
+                  [SYSTEM_READY] > Raman Sharma // SDE <br/>
+                  [LOCATION] > New Delhi, IN <br/>
+                  [STATUS] > Open for Innovation
+                </div>
+              </div>
+            </div>
+          </motion.div>
+        </div>
       </motion.div>
-    </main>
+
+      {/* Decorative Elements */}
+      <div className="absolute top-1/2 left-0 w-full h-px bg-gradient-to-r from-transparent via-glass-border to-transparent" />
+      <div className="absolute top-0 left-1/2 w-px h-full bg-gradient-to-b from-transparent via-glass-border to-transparent" />
+    </section>
   );
 };
 
