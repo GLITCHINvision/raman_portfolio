@@ -76,7 +76,7 @@ const AdvancedStarBackground = () => {
           top: springY,
           width: '600px',
           height: '600px',
-          background: 'radial-gradient(circle, rgba(79, 140, 255, 0.05) 0%, transparent 70%)',
+          background: 'radial-gradient(circle, rgba(204, 255, 0, 0.05) 0%, transparent 70%)',
           borderRadius: '50%',
           transform: 'translate(-50%, -50%)',
           willChange: 'transform',
@@ -131,11 +131,11 @@ const AdvancedStarBackground = () => {
             left: star.left,
             width: star.size,
             height: star.size * 3,
-            backgroundColor: '#4F8CFF',
+            backgroundColor: '#CCFF00',
             borderRadius: '50%',
             willChange: 'transform, opacity',
             // Simplified shadows for performance
-            boxShadow: '0 0 4px rgba(79, 140, 255, 0.4)',
+            boxShadow: '0 0 4px rgba(204, 255, 0, 0.4)',
           }}
         />
       ))}
@@ -163,7 +163,7 @@ const AdvancedStarBackground = () => {
             top: star.top,
             width: '2px',
             height: '80px',
-            background: 'linear-gradient(to bottom, transparent, #4F8CFF, #ffffff)',
+            background: 'linear-gradient(to bottom, transparent, #CCFF00, #ffffff)',
             transform: 'rotate(-45deg)',
             willChange: 'transform, opacity',
           }}

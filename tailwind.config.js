@@ -5,31 +5,33 @@ export default {
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
+    container: {
+      center: true,
+      padding: '1.5rem',
+    },
     extend: {
       colors: {
-        'bg-dark': '#0F1115',
-        'text-primary': '#E6E6E6',
-        'text-secondary': '#9AA0A6',
-        'accent-blue': '#4F8CFF',
-        'accent-glow': 'rgba(79, 140, 255, 0.25)',
-        'glass-bg': 'rgba(20, 25, 30, 0.6)',
-        'glass-border': 'rgba(255, 255, 255, 0.08)',
+        'bg-dark': '#08090A',
+        'bg-card': '#0F1113',
+        'primary': '#FFFFFF',
+        'secondary': '#94A3B8',
+        'accent-primary': '#CCFF00',
+        'accent-secondary': '#8B5CF6',
+        'accent-glow': 'rgba(204, 255, 0, 0.15)',
+        'glass-border': 'rgba(255, 255, 255, 0.05)',
       },
       fontFamily: {
-        main: ['Inter', 'system-ui', 'sans-serif'],
-        mono: ['Bitcount Single', 'system-ui', 'monospace'],
-        recruiter: ['JetBrains Mono', 'monospace'],
+        sans: ['Outfit', 'system-ui', 'sans-serif'],
+        mono: ['JetBrains Mono', 'monospace'],
       },
       animation: {
-        'gradient-bg': 'gradientBG 15s ease infinite',
         'grid-move': 'gridMove 20s linear infinite',
         'float': 'float 10s infinite ease-in-out',
+        'scan': 'scan 6s linear infinite',
+        'particle-drift': 'particle-drift 12s linear infinite',
+        'pulse-neon': 'pulse-neon 2s infinite',
       },
       keyframes: {
-        gradientBG: {
-          '0%, 100%': { backgroundPosition: '0% 50%' },
-          '50%': { backgroundPosition: '100% 50%' },
-        },
         gridMove: {
           '0%': { transform: 'translateY(0)' },
           '100%': { transform: 'translateY(40px)' },
@@ -38,12 +40,22 @@ export default {
           '0%, 100%': { transform: 'translate(0, 0)' },
           '50%': { transform: 'translate(20px, -20px)' },
         },
-      },
-      backdropBlur: {
-        xs: '2px',
+        scan: {
+          '0%': { transform: 'translateY(-100%)' },
+          '100%': { transform: 'translateY(1200%)' },
+        },
+        'particle-drift': {
+          '0%': { transform: 'translate(0, 0)', opacity: '0' },
+          '20%': { opacity: '0.4' },
+          '80%': { opacity: '0.4' },
+          '100%': { transform: 'translate(var(--tw-translate-x, 20px), -200px)', opacity: '0' },
+        },
+        'pulse-neon': {
+          '0%, 100%': { boxShadow: '0 0 15px rgba(204, 255, 0, 0.15)' },
+          '50%': { boxShadow: '0 0 25px rgba(204, 255, 0, 0.25)' },
+        }
       }
     },
   },
   plugins: [],
-  darkMode: 'class',
 }
