@@ -132,9 +132,9 @@ const Hero = ({ recruiterMode, isSynced }) => {
                 </div>
 
                 <div className="p-3 rounded-lg bg-white/5 border border-white/5 font-mono text-[9px] text-secondary leading-tight uppercase tracking-tighter">
-                  [SYSTEM_READY] > Raman Sharma // SDE <br/>
-                  [LOCATION] > New Delhi, IN <br/>
-                  [STATUS] > Open for Innovation
+                  [SYSTEM_READY] &gt; Raman Sharma // SDE <br/>
+                  [LOCATION] &gt; New Delhi, IN <br/>
+                  [STATUS] &gt; Open for Innovation
                 </div>
               </div>
             </div>

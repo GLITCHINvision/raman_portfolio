@@ -40,7 +40,7 @@ const About = () => {
             <div className="lg:col-span-7 space-y-12">
               <motion.div variants={item} className="space-y-6">
                 <p className="text-xl text-secondary leading-relaxed font-mono">
-                  [SYSTEM_BIO] > I am a <span className="text-white font-bold">Software Development Engineer</span> specialized in the synthesis of AI and scalable architecture.
+                  [SYSTEM_BIO] &gt; I am a <span className="text-white font-bold">Software Development Engineer</span> specialized in the synthesis of AI and scalable architecture.
                 </p>
                 <p className="text-lg text-secondary leading-relaxed opacity-80">
                   My work focuses on bridging the gap between raw data and actionable intelligence. 
@@ -123,7 +123,7 @@ const About = () => {
                   <div className="space-y-2 pt-6 border-t border-white/5">
                     {edu.details?.map((detail, dIdx) => (
                       <div key={dIdx} className="flex gap-3 text-[11px] text-secondary font-mono leading-relaxed group/edu">
-                        <span className="text-accent-primary opacity-40 group-hover/edu:opacity-100">>></span>
+                        <span className="text-accent-primary opacity-40 group-hover/edu:opacity-100">&gt;&gt;</span>
                         <span>{detail}</span>
                       </div>
                     ))}

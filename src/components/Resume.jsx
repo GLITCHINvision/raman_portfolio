@@ -71,7 +71,7 @@ const Resume = () => {
                       <ul className="space-y-3">
                         {job.details?.map((detail, dIdx) => (
                           <li key={dIdx} className="flex gap-3 text-sm text-secondary leading-relaxed group/item">
-                            <span className="text-accent-primary opacity-40 group-hover/item:opacity-100 transition-opacity">>></span>
+                            <span className="text-accent-primary opacity-40 group-hover/item:opacity-100 transition-opacity">&gt;&gt;</span>
                             <span>{detail}</span>
                           </li>
                         ))}
